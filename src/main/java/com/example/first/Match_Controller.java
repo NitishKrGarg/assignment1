@@ -2,36 +2,57 @@ package com.example.first;
 
 public class Match_Controller {
 
-    public void initialize()
+    String toss_won_by;
+
+    Team team_one = new Team(1);
+    Team team_two = new Team(2);
+
+    Match match = new Match();
+
+    String result;
+
+    Match_Controller start()
     {
-        Player team_one[] = new Player[11];
-        Player team_two[] = new Player[11];
+        int toss = ((int)(Math.random()*2));
+        if(toss == 0)
+        {
+            toss_won_by = "Team One";
+            match.start_game(team_one,team_two);
+        }
+        else
+        {
+            toss_won_by = "Team Two";
+            match.start_game(team_two,team_one);
+        }
 
-        //assign player names
+        if(team_one.getScore() > team_two.getScore())
+            result = "Team One Wins.";
 
+        else if(team_one.getScore() < team_two.getScore())
+            result = "Team Two Wins.";
+        else
+            result = "Its a Draw.";
+
+        return this;
     }
 
-    String start()
-    {
-        Match obj = new Match();
-        obj.start_game();
-        String str =  "Match stats are";
-        String result;
-        if(obj.result == 1)
-            result = "Team one wins";
-        else if(obj.result == 2)
-            result = "Team two wins";
-        else
-            result = "Its a draw...";
-        String spc = System.getProperty("line.separator");
-        //Team one stats
-        str = str.concat(" Team one score is : ").concat(Integer.toString(obj.score_team_one)).concat(" Team one wicket is : ").concat(Integer.toString(obj.wicket_team_one)).concat(" Overs played by team one is ").concat(Integer.toString((obj.balls_played_team_one)/6)).concat(".").concat(Integer.toString((obj.balls_played_team_one)%6)).concat(" overs......................................................................................................................................");
-        str = str + spc;
-        //Team two stats
-        str = str.concat(" Team two score is : ").concat(Integer.toString(obj.score_team_two)).concat(" Team two wicket is : ").concat(Integer.toString(obj.wicket_team_two)).concat(" Overs played by team one is ").concat(Integer.toString((obj.balls_played_team_two)/6)).concat(".").concat(Integer.toString((obj.balls_played_team_two)%6)).concat(" overs.....................................................................................................");
+    public Match getMatch() {
+        return match;
+    }
 
-        //Final result
-        str = str.concat(" Match result is : ").concat(result);
-        return str;
+    public Team getTeam_one() {
+        return team_one;
+    }
+
+    public Team getTeam_two() {
+        return team_two;
+    }
+
+    public String getToss_won_by() {
+        return toss_won_by;
+    }
+
+    public String getResult() {
+        return result;
     }
 }

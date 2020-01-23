@@ -12,18 +12,27 @@ public class FirstApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(FirstApplication.class, args);
-
+		//generate_result();
 
 	}
 
-	@RequestMapping("/hello")
-	public String generate_result()
+	@RequestMapping("/CricketGame")
+	public Match_Controller generate_result()
 	{
 		Match_Controller ob = new Match_Controller();
 
-		String result = ob.start();
-		return result;
+		return ob.start();
 	}
 
+	/*
+	public static void generate_result()
+	{
+		Match_Controller ob = new Match_Controller();
+
+		ob.start();
+	}
+
+
+	 */
 
 }
