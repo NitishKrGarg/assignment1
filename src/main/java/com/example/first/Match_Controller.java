@@ -1,8 +1,11 @@
 package com.example.first;
 
+import lombok.Data;
+
+@Data
 public class Match_Controller {
 
-    String toss_won_by;
+    private String toss_won_by;
 
     Team team_one = new Team(1);
     Team team_two = new Team(2);
@@ -11,16 +14,12 @@ public class Match_Controller {
 
     String result;
 
-    Match_Controller start()
-    {
+    public Match_Controller start() {
         int toss = ((int)(Math.random()*2));
-        if(toss == 0)
-        {
+        if(toss == 0) {
             toss_won_by = "Team One";
             match.start_game(team_one,team_two);
-        }
-        else
-        {
+        } else {
             toss_won_by = "Team Two";
             match.start_game(team_two,team_one);
         }
@@ -34,25 +33,5 @@ public class Match_Controller {
             result = "Its a Draw.";
 
         return this;
-    }
-
-    public Match getMatch() {
-        return match;
-    }
-
-    public Team getTeam_one() {
-        return team_one;
-    }
-
-    public Team getTeam_two() {
-        return team_two;
-    }
-
-    public String getToss_won_by() {
-        return toss_won_by;
-    }
-
-    public String getResult() {
-        return result;
     }
 }
